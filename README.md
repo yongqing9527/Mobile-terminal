@@ -37,3 +37,17 @@
     container.on('submit', '.input-kw-form', function(event){
       event.preventDefault();
     })
+
+
+## 关于移动端的input问题
+
+      input{
+          outline: none;
+          -webkit-appearance: none;   //消除输入框和按钮的原生外观，在iOS上加上这个属性才能给按钮和输入框自定义样式 。   注意：不同type的input使用这个属性之后表现不一。text、button无样式，radio、checkbox直接消失      
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/*ios 去除点击时的灰色背景*/
+          -webkit-user-select: none; // 禁止页面文字选择 ，此属性不继承，一般加在body上规定整个body的文字都不会自动调整
+          -webkit-touch-callout:none;  // 禁用长按页面时的弹出菜单(iOS下有效) ,img和a标签都要加
+      }
+      input[type = checkbox]{
+          background: transparent;
+      }
