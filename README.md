@@ -51,3 +51,40 @@
       input[type = checkbox]{
           background: transparent;
       }
+
+## 移动端处理键盘弹出收起
+
+    // 没用
+    var height = document.documentElement.clientHeight;
+    $('#scroller').css('min-height',height);
+    $(function () {
+        var u = navigator.userAgent, app = navigator.appVersion;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //Android终端
+        var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isAndroid) {
+            $('.baMaYD_login_bom').text(12);
+            var winHeight = $(window).height();  //获取当前页面高度
+            $(window).resize(function () {
+                var thisHeight = $(this).height();
+                if ( winHeight - thisHeight > 140 ) {
+                    //键盘弹出
+                    // $('.baMaYD_login_bom').css(display,'none');
+                } else {
+                    //键盘收起
+                    // $('.baMaYD_login_bom').css(display,'block');
+                }
+            });
+        }
+        if (isIOS) {
+            $(document).on('focusin', function () {
+                //软键盘弹出的事件处理
+                // $('.baMaYD_login_bom').css({height: '0'});
+            });
+            $(document).on('focusout', function () {
+                //软键盘收起的事件处理
+            });
+            // window.setTimeout(function(){
+            //     window.scrollTo(0,document.body.clientHeight);
+            // }, 500);
+        }
+    });
